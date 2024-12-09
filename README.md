@@ -16,8 +16,8 @@ You can view a 'slideshow' of all installed keyboards - it's in the 'Advanced' m
 
 * * *
 
-[Download .exe file (Windows 10/11 or .Net 4.8)](https://github.com/stuartd/keymapper/releases/download/1.4/KeyMapper.exe)
-)
+[Download .exe file (Windows XP+ or .Net 2.0)](https://github.com/MeLlamoGamer/keymapper-backport/releases/download/Release/KeyMapper.exe)
+
 
 You will need to have Administrative access to your computer.
 
