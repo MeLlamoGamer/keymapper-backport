@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
-using System.Linq;
+
 
 namespace KeyMapper.Classes
 {

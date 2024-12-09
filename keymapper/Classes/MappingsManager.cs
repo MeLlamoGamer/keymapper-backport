@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Security;
 using System.Text;
 using System.Windows.Forms;
@@ -71,15 +70,19 @@ namespace KeyMapper.Classes
 
         private static Collection<KeyMapping> CopyMappings(Collection<KeyMapping> keyMappings)
         {
-            var copy = new Collection<KeyMapping>();
+            Collection<KeyMapping> copy = new Collection<KeyMapping>();
 
-            foreach (var map in keyMappings.Where(map => map.IsValid()))
+            foreach (KeyMapping map in keyMappings)
             {
-                copy.Add(map);
+                if (map.IsValid())
+                {
+                    copy.Add(map);
+                }
             }
 
             return copy;
         }
+
 
         public static Collection<KeyMapping> GetMappings(MappingFilter filter)
         {

@@ -29,7 +29,6 @@ namespace KeyMapper.Classes
                 }
                 return base.ToString();
             }
-
         }
 
         internal static void MeasureComboItem(object sender, MeasureItemEventArgs e)
@@ -39,7 +38,8 @@ namespace KeyMapper.Classes
                 return;
             }
 
-            if (sender is not ComboBox combo)
+            var combo = sender as ComboBox;
+            if (combo == null)
             {
                 return;
             }
@@ -65,7 +65,8 @@ namespace KeyMapper.Classes
                 return;
             }
 
-            if (sender is ComboBox combo)
+            var combo = sender as ComboBox;
+            if (combo != null)
             {
                 var comboBoxItem = combo.Items[e.Index];
 
@@ -84,7 +85,7 @@ namespace KeyMapper.Classes
                 }
 
                 TextRenderer.DrawText(e.Graphics, comboBoxItem.ToString(), combo.Font,
-                    bounds, e.ForeColor, TextFormatFlags.Left & TextFormatFlags.VerticalCenter);
+                    bounds, e.ForeColor, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
 
                 // draw the separator line
                 if (isSeparatorItem && (e.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
@@ -98,10 +99,8 @@ namespace KeyMapper.Classes
                     }
                     e.Graphics.DrawLine(SystemPens.ControlText, separatorRect.Left + 2, separatorRect.Top + 1,
                         separatorRect.Right - 2, separatorRect.Top + 1);
-
                 }
             }
-
         }
     }
 }

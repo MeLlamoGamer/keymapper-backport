@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Security;
 using System.Text;
 using System.Windows.Forms;
@@ -323,10 +322,14 @@ namespace KeyMapper.Classes
                 var installedFonts = new InstalledFontCollection();
                 var fonts = installedFonts.Families;
 
-                if (fonts.Any(ff => ff.Name == "Arial Unicode MS"))
+                foreach (FontFamily ff in fonts)
                 {
-                    arialUnicodeMsInstalled = true;
-                    defaultKeyFont = "Arial Unicode MS";
+                    if (ff.Name == "Arial Unicode MS")
+                    {
+                        arialUnicodeMsInstalled = true;
+                        defaultKeyFont = "Arial Unicode MS";
+                        break;
+                    }
                 }
             }
 
@@ -414,10 +417,14 @@ namespace KeyMapper.Classes
 
             if (key != null)
             {
-                var values = key.GetValueNames();
-                if (values.Any(t => t == "Mappings"))
+                string[] values = key.GetValueNames();
+                foreach (string t in values)
                 {
-                    savedMappingsExist = true;
+                    if (t == "Mappings")
+                    {
+                        savedMappingsExist = true;
+                        break;
+                    }
                 }
 
                 key.Close();

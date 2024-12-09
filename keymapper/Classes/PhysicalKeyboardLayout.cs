@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 
 namespace KeyMapper.Classes
 {
@@ -42,8 +42,16 @@ namespace KeyMapper.Classes
 
         public static PhysicalKeyboardLayout GetPhysicalLayout(KeyboardLayoutType layout, bool isMacKeyboard)
         {
-            var existingInstance =
-                cachedInstances.SingleOrDefault(l => l.layout == layout && l.isMacKeyboard == isMacKeyboard);
+            PhysicalKeyboardLayout existingInstance = null;
+
+            foreach (PhysicalKeyboardLayout l in cachedInstances)
+            {
+                if (l.layout == layout && l.isMacKeyboard == isMacKeyboard)
+                {
+                    existingInstance = l;
+                    break;
+                }
+            }
 
             if (existingInstance != null)
             {
@@ -52,7 +60,8 @@ namespace KeyMapper.Classes
 
             var nl = new PhysicalKeyboardLayout
             {
-                layout = layout, isMacKeyboard = isMacKeyboard
+                layout = layout,
+                isMacKeyboard = isMacKeyboard
             };
 
             nl.Populate();
@@ -61,6 +70,7 @@ namespace KeyMapper.Classes
 
             return nl;
         }
+
 
         public static int[] GetRowTerminators(KeyboardLayoutType layout)
         {
