@@ -614,13 +614,15 @@ namespace KeyMapper.Forms
 
         private void KeyDoubleClick(object sender, EventArgs e)
         {
-            if (sender is not KeyPictureBox box)
+            var box = sender as KeyPictureBox;
+            if (box == null)
             {
                 return;
             }
 
             FormsManager.ShowEditMappingForm(box.Map, false);
         }
+
 
         private void KeyboardFormClosed(object sender, FormClosedEventArgs e)
         {
