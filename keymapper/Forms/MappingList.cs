@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using KeyMapper.Classes;
 
@@ -81,8 +80,11 @@ namespace KeyMapper.Forms
             }
 
             // Resize according to number of mappings
-            int height = grdMappings.ColumnHeadersHeight
-                + grdMappings.Rows.Cast<DataGridViewRow>().Sum(row => row.Height + row.DividerHeight);
+            int height = grdMappings.ColumnHeadersHeight;
+            foreach (DataGridViewRow row in grdMappings.Rows)
+            {
+                height += row.Height + row.DividerHeight;
+            }
 
             MinimumSize = new Size(0, 0);
             MaximumSize = new Size(0, 0);
